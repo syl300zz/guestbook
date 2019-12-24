@@ -1,0 +1,13 @@
+-- 방명록 테이블을 생성하는  query를 작성
+
+create table guestbook
+(
+    sn number(10,0) primary key,
+    author varchar2(20) not null,
+    content varchar2(200) not null,
+    indate date default sysdate
+);
+
+-- 방명록 글 번호용 시퀀스를 생성하는 query를 작성
+
+create sequence book_seq; 

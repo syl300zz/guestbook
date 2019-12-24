@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="guestbook.dao.GuestbookMapper">
+
+<insert id="insertbook" parameterType="Guestbook">
+   insert into guestbook(
+        sn,
+        author,
+        content
+    ) values (
+        guestbook_seq.nextval,
+        #{author},
+        #{content}
+    )
+</insert>
+
+<select id="listbook" resultType="Guestbook">
+select *
+from guestbook
+order by sn
+</select>
+
+<delete id="deletebook" parameterType="int">
+delete
+from guestbook
+where
+    sn = #{sn}
+</delete>
+
+<update id="updatebook" parameterType="Guestbook">
+update 
+    guestbook
+set
+    sn = #{sn}
+    <if test="author != ''">
+    , author = #{author}
+    </if>
+    <if test="content != ''">
+    , content = #{content}
+    </if>
+where
+    sn = #{sn}
+</update>
+
+<select id="searchbook" parameterType="HashMap" resultType="Guestbook">
+select
+    author,
+    content
+from guestbook
+where
+    <if test="abc == 1">
+    upper(author) like upper('%'|| #{def} || '%')
+    </if>
+    <if test="abc == 2">
+    upper(content) like upper('%' || #{def} || '%')
+    </if>
+</select>
+
+</mapper>

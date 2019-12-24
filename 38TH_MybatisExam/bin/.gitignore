@@ -1,0 +1,5 @@
+/db.properties
+/guestbook.txt
+/guestbook/
+/guestbookMapper.xml
+/mybatis-config.xml
